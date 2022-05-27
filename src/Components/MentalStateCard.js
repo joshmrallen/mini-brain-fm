@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function MentalStateCard({name}){
+export default function MentalStateCard({name, toggleMentalState}){
 
     const displayName = () => {
         switch(name){
@@ -15,6 +15,6 @@ export default function MentalStateCard({name}){
     }
 
     return(
-        <div class="mental-state-card">Mental State Card: {displayName()}</div>
+        <div className="mental-state-card" onClick = {toggleMentalState}>Mental State Card: {displayName()}</div>
     );
 }
