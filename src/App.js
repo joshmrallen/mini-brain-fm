@@ -20,7 +20,11 @@ export default function App(){
     return(
         <>
             <div id="title"><h1>Activate with MiniBrain.fm</h1></div>
-            <MentalStateContainer toggleMentalState={toggleMentalState} />
+            { 
+                mentalStateOn ? <PlayerContainer toggleMentalState={toggleMentalState} /> 
+                : <MentalStateContainer toggleMentalState={toggleMentalState} /> 
+            }
+            
         
         </>
     );
