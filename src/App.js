@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import MentalStateContainer from './Containers/MentalStateContainer';
+import PlayerContainer from './Containers/PlayerContainer';
 
 
 
