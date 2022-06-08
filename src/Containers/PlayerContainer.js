@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import {AiFillCloseCircle} from 'react-icons/ai'
-import {AiOutlineArrowLeft} from 'react-icons/ai'
-import {AiOutlineArrowRight} from 'react-icons/ai'
-import {FaPlay} from 'react-icons/fa'
-import {FaPause} from 'react-icons/fa'
+import {AiFillCloseCircle, AiOutlineRollback} from 'react-icons/ai'
+import {FaPlay, FaPause} from 'react-icons/fa'
+import {BsSkipBackwardFill, BsSkipForwardFill, BsArrowCounterclockwise, BsArrowClockwise} from 'react-icons/bs'
 
 export default function PlayerContainer({toggleMentalState}){
 
@@ -17,12 +15,14 @@ export default function PlayerContainer({toggleMentalState}){
     return(
         <div id="player-container">
 
-            <button onClick={toggleMentalState}><AiFillCloseCircle /></button>
-            <button><AiOutlineArrowLeft /></button>
+            <button onClick={toggleMentalState}><AiOutlineRollback /></button>
+            <button><BsSkipBackwardFill /></button>
+            <button><BsArrowCounterclockwise /></button>
             <button onClick={togglePlayPause}>
                 {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
-            <button><AiOutlineArrowRight /></button>
+            <button><BsArrowClockwise /></button>
+            <button><BsSkipForwardFill /></button>
 
         </div>
     );
