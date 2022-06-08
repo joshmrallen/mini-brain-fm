@@ -13,16 +13,31 @@ export default function PlayerContainer({toggleMentalState}){
     }
 
     return(
-        <div id="player-container">
+        <div className="player-container">
 
-            <button onClick={toggleMentalState}><AiOutlineRollback /></button>
-            <button><BsSkipBackwardFill /></button>
-            <button><BsArrowCounterclockwise /></button>
-            <button onClick={togglePlayPause}>
+            <audio src="http://localhost:3000/tracks/focus/1" preload="metadata"></audio>
+            <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
+            <button className='forward-backward'><BsSkipBackwardFill /></button>
+            <button className='forward-backward'><BsArrowCounterclockwise />30</button>
+            <button className='play-pause' onClick={togglePlayPause}>
                 {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
-            <button><BsArrowClockwise /></button>
-            <button><BsSkipForwardFill /></button>
+            <button className='forward-backward'>30<BsArrowClockwise /></button>
+            <button className='forward-backward'><BsSkipForwardFill /></button>
+
+            { /* current time */}
+
+            <div className='current-time'>0:00</div>
+
+            {/* progress bar */}
+
+            <div>
+                <input type="range" />
+            </div>
+
+            {/* durration */}
+
+            <div className='duration'>2:49</div>
 
         </div>
     );
