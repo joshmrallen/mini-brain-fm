@@ -43,6 +43,11 @@
     color: white;
 }
 
+.back-thirty {
+    display: flex;
+    justify-content: right;
+}
+
 /* play/pause button */
 .play-pause {
     border: none;
@@ -55,5 +60,5 @@
 
 .current-time,
 .duration {
-    
+
 }

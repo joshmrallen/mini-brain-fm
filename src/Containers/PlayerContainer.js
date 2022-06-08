@@ -18,7 +18,7 @@ export default function PlayerContainer({toggleMentalState}){
             <audio src="http://localhost:3000/tracks/focus/1" preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
             <button className='forward-backward'><BsSkipBackwardFill /></button>
-            <button className='forward-backward'><BsArrowCounterclockwise />30</button>
+            <button className='forward-backward back-thirty'><BsArrowCounterclockwise />30</button>
             <button className='play-pause' onClick={togglePlayPause}>
                 {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
