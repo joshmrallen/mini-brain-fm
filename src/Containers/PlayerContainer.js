@@ -25,8 +25,19 @@ export default function PlayerContainer({toggleMentalState}){
 
     //effect
     useEffect(() => {
-        setDuration(audioPlayer.current.duration)
+        const seconds = Math.floor(audioPlayer.current.duration)
+        setDuration(seconds)
     }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+
+    const formatTime = (secs) => {
+        const minutes = Math.floor(secs / 60);
+        const returnedMins = minutes < 10 ? `0${minutes}` : `${minutes}`;
+
+        const remainingSecs = Math.floor(secs % 60);
+        const returnedSecs = remainingSecs < 10 ? `0${remainingSecs}` : `${remainingSecs}`;
+
+        return `${returnedMins}:${returnedSecs}`;
+    }
 
     return(
         <div className="player-container">
@@ -53,7 +64,7 @@ export default function PlayerContainer({toggleMentalState}){
 
             {/* durration */}
 
-            <div className='duration'>{duration}</div>
+            <div className='duration'>{formatTime(duration)}</div>
 
         </div>
     );
