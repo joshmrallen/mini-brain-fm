@@ -12,6 +12,7 @@ export default function PlayerContainer({toggleMentalState}){
     //references
     const audioPlayer = useRef(); //reference audio component
     const progressBar = useRef(); //reference progress bar element
+    const animationRef = useRef(); //reference progress bar animation
 
     //effect
     useEffect(() => {
@@ -26,9 +27,11 @@ export default function PlayerContainer({toggleMentalState}){
         setIsPlaying(!prevValue);
         if(!prevValue){
             audioPlayer.current.play();
+            animationRef.current = requestAnimationFrame(whilePlaying);
             console.log("Playing track...")
         } else {
             audioPlayer.current.pause();
+            cancelAnimationFrame(animationRef.current);
             console.log("Pausing track.")
         }
     }
@@ -46,6 +49,16 @@ export default function PlayerContainer({toggleMentalState}){
 
     const changeRange = () => {
         audioPlayer.current.currentTime = progressBar.current.value;
+        changePlayerCurrentTime();
+    }
+
+    const whilePlaying = () => {
+        progressBar.current.value = audioPlayer.current.currentTime;
+        changePlayerCurrentTime();
+        animationRef.current = requestAnimationFrame(whilePlaying);
+    }
+
+    const changePlayerCurrentTime = () => {
         progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`);
         setCurrentTime(progressBar.current.value);
     }
