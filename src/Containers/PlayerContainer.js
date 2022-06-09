@@ -64,7 +64,7 @@ export default function PlayerContainer({toggleMentalState}){
 
             {/* durration */}
 
-            <div className='duration'>{formatTime(duration)}</div>
+            <div className='duration'>{(duration && !isNaN(duration)) ? formatTime(duration) : "0:00"}</div>
 
         </div>
     );
