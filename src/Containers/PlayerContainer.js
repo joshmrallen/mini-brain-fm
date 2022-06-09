@@ -73,6 +73,8 @@ export default function PlayerContainer({toggleMentalState}){
         changeRange();
     }
 
+    /* current bug: forwardThirty and backThirty only result in the file restarting. Also can't drag the knob. Track just restarts. */
+
     return(
         <div className="player-container">
 
