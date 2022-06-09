@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {AiFillCloseCircle, AiOutlineRollback} from 'react-icons/ai'
 import {FaPlay, FaPause} from 'react-icons/fa'
 import {BsSkipBackwardFill, BsSkipForwardFill, BsArrowCounterclockwise, BsArrowClockwise} from 'react-icons/bs'
 
 export default function PlayerContainer({toggleMentalState}){
-
+    //state
     const [isPlaying, setIsPlaying] = useState(false);
+
+    //references
+    const audioPlayer = useRef(); //reference audio component
 
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying);
@@ -15,7 +18,7 @@ export default function PlayerContainer({toggleMentalState}){
     return(
         <div className="player-container">
 
-            <audio src="http://localhost:3000/tracks/focus/1" preload="metadata"></audio>
+            <audio ref={audioPlayer} src="http://localhost:3000/tracks/focus/1" preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
             <button className='forward-backward'><BsSkipBackwardFill /></button>
             <button className='forward-backward back-thirty'><BsArrowCounterclockwise />30</button>
