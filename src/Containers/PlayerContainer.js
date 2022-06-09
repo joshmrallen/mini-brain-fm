@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {AiFillCloseCircle, AiOutlineRollback} from 'react-icons/ai'
 import {FaPlay, FaPause} from 'react-icons/fa'
 import {BsSkipBackwardFill, BsSkipForwardFill, BsArrowCounterclockwise, BsArrowClockwise} from 'react-icons/bs'
@@ -22,6 +22,11 @@ export default function PlayerContainer({toggleMentalState}){
             console.log("Pausing track.")
         }
     }
+
+    //effect
+    useEffect(() => {
+        setDuration(audioPlayer.current.duration)
+    }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
     return(
         <div className="player-container">
