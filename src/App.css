@@ -66,7 +66,7 @@
 
 .progress-bar {
     --bar-bg: #ffe3d4;
-    --seek-before-width: 100px;
+    --seek-before-width: 0;
     --seek-before-color: #ffc2a1;
     --knobby: #3452a5;
     --selected-knobby: #26c9c3;

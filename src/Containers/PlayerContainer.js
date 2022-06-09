@@ -7,9 +7,18 @@ export default function PlayerContainer({toggleMentalState}){
     //state
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
 
     //references
     const audioPlayer = useRef(); //reference audio component
+    const progressBar = useRef(); //reference progress bar element
+
+    //effect
+    useEffect(() => {
+        const seconds = Math.floor(audioPlayer.current.duration)
+        setDuration(seconds)
+    }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+    
 
     const togglePlayPause = () => {
         const prevValue = isPlaying;
@@ -23,11 +32,6 @@ export default function PlayerContainer({toggleMentalState}){
         }
     }
 
-    //effect
-    useEffect(() => {
-        const seconds = Math.floor(audioPlayer.current.duration)
-        setDuration(seconds)
-    }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
     const formatTime = (secs) => {
         const minutes = Math.floor(secs / 60);
@@ -54,12 +58,12 @@ export default function PlayerContainer({toggleMentalState}){
 
             { /* current time */}
 
-            <div className='current-time'>0:00</div>
+            <div className='current-time'>{formatTime(currentTime)}</div>
 
             {/* progress bar */}
 
             <div>
-                <input type="range" className='progress-bar' />
+                <input type="range" className='progress-bar' defaultValue='0' ref={progressBar} />
             </div>
 
             {/* durration */}
