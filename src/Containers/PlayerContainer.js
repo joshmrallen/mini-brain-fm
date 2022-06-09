@@ -32,7 +32,7 @@ export default function PlayerContainer({toggleMentalState}){
             {/* progress bar */}
 
             <div>
-                <input type="range" />
+                <input type="range" className='progress-bar' />
             </div>
 
             {/* durration */}
