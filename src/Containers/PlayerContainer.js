@@ -11,8 +11,15 @@ export default function PlayerContainer({toggleMentalState}){
     const audioPlayer = useRef(); //reference audio component
 
     const togglePlayPause = () => {
-        setIsPlaying(!isPlaying);
-        console.log("play/pause toggled!")
+        const prevValue = isPlaying;
+        setIsPlaying(!prevValue);
+        if(!prevValue){
+            audioPlayer.current.play();
+            console.log("Playing track...")
+        } else {
+            audioPlayer.current.pause();
+            console.log("Pausing track.")
+        }
     }
 
     return(
