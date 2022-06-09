@@ -6,6 +6,7 @@ import {BsSkipBackwardFill, BsSkipForwardFill, BsArrowCounterclockwise, BsArrowC
 export default function PlayerContainer({toggleMentalState}){
     //state
     const [isPlaying, setIsPlaying] = useState(false);
+    const [duration, setDuration] = useState(0);
 
     //references
     const audioPlayer = useRef(); //reference audio component
@@ -47,7 +48,7 @@ export default function PlayerContainer({toggleMentalState}){
 
             {/* durration */}
 
-            <div className='duration'>2:49</div>
+            <div className='duration'>{duration}</div>
 
         </div>
     );
