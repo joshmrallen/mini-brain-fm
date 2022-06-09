@@ -17,6 +17,7 @@ export default function PlayerContainer({toggleMentalState}){
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration)
         setDuration(seconds)
+        progressBar.current.max = seconds;
     }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
     
 
@@ -43,6 +44,12 @@ export default function PlayerContainer({toggleMentalState}){
         return `${returnedMins}:${returnedSecs}`;
     }
 
+    const changeRange = () => {
+        audioPlayer.current.currentTime = progressBar.current.value;
+        progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`);
+        setCurrentTime(progressBar.current.value);
+    }
+
     return(
         <div className="player-container">
 
@@ -63,7 +70,7 @@ export default function PlayerContainer({toggleMentalState}){
             {/* progress bar */}
 
             <div>
-                <input type="range" className='progress-bar' defaultValue='0' ref={progressBar} />
+                <input type="range" className='progress-bar' defaultValue='0' ref={progressBar} onChange={changeRange} />
             </div>
 
             {/* durration */}
