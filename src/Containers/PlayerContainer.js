@@ -63,17 +63,27 @@ export default function PlayerContainer({toggleMentalState}){
         setCurrentTime(progressBar.current.value);
     }
 
+    const backThirty = () => {
+        progressBar.current.value = Number(progressBar.current.value - 30);
+        changeRange();
+    }
+
+    const forwardThirty = () => {
+        progressBar.current.value = Number(progressBar.current.value + 30);
+        changeRange();
+    }
+
     return(
         <div className="player-container">
 
             <audio ref={audioPlayer} src="http://localhost:3000/tracks/focus/1" preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
             <button className='forward-backward'><BsSkipBackwardFill /></button>
-            <button className='forward-backward back-thirty'><BsArrowCounterclockwise />30</button>
+            <button className='forward-backward back-thirty' onClick={backThirty}><BsArrowCounterclockwise />30</button>
             <button className='play-pause' onClick={togglePlayPause}>
                 {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
-            <button className='forward-backward'>30<BsArrowClockwise /></button>
+            <button className='forward-backward' onClick={forwardThirty}>30<BsArrowClockwise /></button>
             <button className='forward-backward'><BsSkipForwardFill /></button>
 
             { /* current time */}
