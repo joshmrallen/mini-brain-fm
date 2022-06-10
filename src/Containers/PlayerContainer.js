@@ -83,6 +83,15 @@ export default function PlayerContainer({toggleMentalState}){
     works as expected in firefox
     */
 
+   /* Todo:
+        1. Make method to automatically request the next track after a track ends
+        2. Add Track name to Audio player display
+        3. Make click handler for skip buttons to skip to next/previous tracks.
+        4. Ask around in discord about chrome issue with forward/back 30 buttons.
+
+   
+   */
+
 
     return(
         <div className="player-container">
