@@ -64,16 +64,25 @@ export default function PlayerContainer({toggleMentalState}){
     }
 
     const backThirty = () => {
-        progressBar.current.value = Number(progressBar.current.value - 30);
+        console.log(`progressBar.current.value before: ${progressBar.current.value}`)
+        progressBar.current.value = Number(progressBar.current.value) - 30;
+        console.log(`progressBar.current.value after: ${progressBar.current.value}`)
         changeRange();
     }
 
     const forwardThirty = () => {
-        progressBar.current.value = Number(progressBar.current.value + 30);
+        console.log(`progressBar.current.value before: ${progressBar.current.value}; ${typeof progressBar.current.value}; using Number: ${Number(progressBar.current.value)}`)
+        progressBar.current.value = Number(progressBar.current.value) + 30;
+        console.log(`progressBar.current.value after: ${progressBar.current.value}`)
         changeRange();
     }
 
-    /* current bug: forwardThirty and backThirty only result in the file restarting. Also can't drag the knob. Track just restarts. */
+    /* current bug: 
+    happens and chrome (and probably safari)
+    clicking the forwardThirty and backThirty buttons result in the file restarting. Also can't drag the knob. Track just restarts.
+    works as expected in firefox
+    */
+
 
     return(
         <div className="player-container">
