@@ -85,17 +85,29 @@ export default function PlayerContainer({toggleMentalState}){
 
    /* Todo:
         1. Make method to automatically request the next track after a track ends
-        2. Add Track name to Audio player display
-        3. Make click handler for skip buttons to skip to next/previous tracks.
-        4. Ask around in discord about chrome issue with forward/back 30 buttons.
+        2. Change mental state hook to provide mental state name and give 'nil' by default.
+        3. Add Track name to Audio player display
+        4. Make click handler for skip buttons to skip to next/previous tracks.
+        5. Ask around in discord about chrome issue with forward/back 30 buttons.
 
    
    */
 
+    const currentTrack = () => {
+        // use hook with current track interpolated as string in audio tag src attribute
+        // each mental state has 3 tracks
+        // return the next track if 1 or 2
+        // return track 1 if current track number is 3
+    }
+
+    // const currentMentalState = () => {
+
+    // }
+
 
     return(
         <div className="player-container">
-
+            { console.log() }
             <audio ref={audioPlayer} src="http://localhost:3000/tracks/focus/1" preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
             <button className='forward-backward'><BsSkipBackwardFill /></button>
