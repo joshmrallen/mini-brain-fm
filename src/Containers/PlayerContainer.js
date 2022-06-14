@@ -8,6 +8,7 @@ export default function PlayerContainer({mState, toggleMentalState}){
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
+    const [currentTrack, setCurrentTrack] = useState(1);
 
     //references
     const audioPlayer = useRef(); //reference audio component
@@ -84,7 +85,7 @@ export default function PlayerContainer({mState, toggleMentalState}){
     */
 
    /* Todo:
-        1. Add mental state hook to provide mental state name and give 'null' by default.
+        DONE - 1. Add mental state hook to provide mental state name and give 'null' by default.
         2. Make method to automatically request the next track after a track ends
         3. Add Track name to Audio player display
         4. Make click handler for skip buttons to skip to next/previous tracks.
@@ -93,30 +94,46 @@ export default function PlayerContainer({mState, toggleMentalState}){
    
    */
 
-    const currentTrack = () => {
+    const skipToNextTrack = () => {
         // use hook with current track interpolated as string in audio tag src attribute
         // each mental state has 3 tracks
         // return the next track if 1 or 2
         // return track 1 if current track number is 3
+
+        // const tracks = [1,2,3]
+        // would be better to provide track number in api response
+        setCurrentTrack(prevTrack => {
+            if(prevTrack < 3){
+                return prevTrack + 1;
+            } else {
+                return 1;
+            }
+        });
     }
 
-    // const currentMentalState = () => {
-
-    // }
+    const skipToPrevTrack = () => {
+        setCurrentTrack(prevTrack => {
+            if(prevTrack > 1){
+                return prevTrack - 1;
+            } else {
+                return 3;
+            }
+        });
+    }
 
 
     return(
         <div className="player-container">
-            { console.log(mState) }
+            { console.log(`Current Mental State: ${mState}\nCurrent Track: ${currentTrack}`) }
             <audio ref={audioPlayer} src={`http://localhost:3000/tracks/${mState}/1`} preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
-            <button className='forward-backward'><BsSkipBackwardFill /></button>
+            <button className='forward-backward' onClick={skipToPrevTrack}><BsSkipBackwardFill /></button>
             <button className='forward-backward back-thirty' onClick={backThirty}><BsArrowCounterclockwise />30</button>
             <button className='play-pause' onClick={togglePlayPause}>
                 {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
             <button className='forward-backward' onClick={forwardThirty}>30<BsArrowClockwise /></button>
-            <button className='forward-backward'><BsSkipForwardFill /></button>
+            <button className='forward-backward' onClick={skipToNextTrack}><BsSkipForwardFill /></button>
 
             { /* current time */}
 
