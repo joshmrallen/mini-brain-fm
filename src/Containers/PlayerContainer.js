@@ -109,6 +109,8 @@ export default function PlayerContainer({mState, toggleMentalState}){
                 return 1;
             }
         });
+        togglePlayPause();
+        togglePlayPause();
     }
 
     const skipToPrevTrack = () => {
@@ -119,13 +121,15 @@ export default function PlayerContainer({mState, toggleMentalState}){
                 return 3;
             }
         });
+        togglePlayPause();
+        togglePlayPause();
     }
 
 
     return(
         <div className="player-container">
             { console.log(`Current Mental State: ${mState}\nCurrent Track: ${currentTrack}`) }
-            <audio ref={audioPlayer} src={`http://localhost:3000/tracks/${mState}/1`} preload="metadata"></audio>
+            <audio ref={audioPlayer} src={`http://localhost:3000/tracks/${mState}/${currentTrack}`} preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
             <button className='forward-backward' onClick={skipToPrevTrack}><BsSkipBackwardFill /></button>
             <button className='forward-backward back-thirty' onClick={backThirty}><BsArrowCounterclockwise />30</button>
