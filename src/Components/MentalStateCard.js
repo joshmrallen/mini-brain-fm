@@ -15,6 +15,6 @@ export default function MentalStateCard({name, toggleMentalState}){
     }
 
     return(
-        <div className="mental-state-card" onClick = {toggleMentalState}>Mental State Card: {displayName()}</div>
+        <div name={name} className="mental-state-card" onClick = {toggleMentalState}>Mental State Card: {displayName()}</div>
     );
 }

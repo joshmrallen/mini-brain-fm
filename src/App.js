@@ -7,10 +7,14 @@ import PlayerContainer from './Containers/PlayerContainer';
 
 export default function App(){
 
-    const [mentalStateOn, setMentalState] = useState(false);
+    const [mentalStateOn, setMentalStateOn] = useState(false);
+    const [mState, setMState] = useState(null);
 
-    const toggleMentalState = () => {
-        setMentalState(!mentalStateOn);
+    const toggleMentalState = (e) => {
+        setMState(e.target.getAttribute("name"));
+        setMentalStateOn(!mentalStateOn);
+        
+        console.log(`Mental State: ${mState}`);
         console.log(`clicked! mental state is currently: ${mentalStateOn}`)
     }
 
@@ -21,7 +25,7 @@ export default function App(){
         <>
             <div id="title"><h1>Activate with MiniBrain.fm</h1></div>
             { 
-                mentalStateOn ? <PlayerContainer toggleMentalState={toggleMentalState} /> 
+                mentalStateOn ? <PlayerContainer mState={mState} toggleMentalState={toggleMentalState} /> 
                 : <MentalStateContainer toggleMentalState={toggleMentalState} /> 
             }
             

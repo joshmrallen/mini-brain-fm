@@ -3,7 +3,7 @@ import {AiFillCloseCircle, AiOutlineRollback} from 'react-icons/ai'
 import {FaPlay, FaPause} from 'react-icons/fa'
 import {BsSkipBackwardFill, BsSkipForwardFill, BsArrowCounterclockwise, BsArrowClockwise} from 'react-icons/bs'
 
-export default function PlayerContainer({toggleMentalState}){
+export default function PlayerContainer({mState, toggleMentalState}){
     //state
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
@@ -84,8 +84,8 @@ export default function PlayerContainer({toggleMentalState}){
     */
 
    /* Todo:
-        1. Make method to automatically request the next track after a track ends
-        2. Change mental state hook to provide mental state name and give 'nil' by default.
+        1. Add mental state hook to provide mental state name and give 'null' by default.
+        2. Make method to automatically request the next track after a track ends
         3. Add Track name to Audio player display
         4. Make click handler for skip buttons to skip to next/previous tracks.
         5. Ask around in discord about chrome issue with forward/back 30 buttons.
@@ -107,8 +107,8 @@ export default function PlayerContainer({toggleMentalState}){
 
     return(
         <div className="player-container">
-            { console.log() }
-            <audio ref={audioPlayer} src="http://localhost:3000/tracks/focus/1" preload="metadata"></audio>
+            { console.log(mState) }
+            <audio ref={audioPlayer} src={`http://localhost:3000/tracks/${mState}/1`} preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
             <button className='forward-backward'><BsSkipBackwardFill /></button>
             <button className='forward-backward back-thirty' onClick={backThirty}><BsArrowCounterclockwise />30</button>
