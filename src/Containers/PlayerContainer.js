@@ -22,7 +22,7 @@ export default function PlayerContainer({mState, toggleMentalState}){
         progressBar.current.max = seconds;
     }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
     
-
+    //methods 
     const togglePlayPause = () => {
         const prevValue = isPlaying;
         setIsPlaying(!prevValue);
@@ -109,8 +109,12 @@ export default function PlayerContainer({mState, toggleMentalState}){
                 return 1;
             }
         });
-        togglePlayPause();
-        togglePlayPause();
+
+        // setIsPlaying(true);
+        // audioPlayer.current.play();
+        // animationRef.current = requestAnimationFrame(whilePlaying);
+        // console.log("Playing track...")
+        isPlaying ? togglePlayPause() : console.log("already paused")
     }
 
     const skipToPrevTrack = () => {
@@ -121,7 +125,11 @@ export default function PlayerContainer({mState, toggleMentalState}){
                 return 3;
             }
         });
-        togglePlayPause();
+
+        // setIsPlaying(true);
+        // audioPlayer.current.play();
+        // animationRef.current = requestAnimationFrame(whilePlaying);
+        // console.log("Playing track...")
         togglePlayPause();
     }
 
