@@ -17,11 +17,18 @@ export default function PlayerContainer({mState, toggleMentalState}){
 
     //effect
     useEffect(() => {
+        setIsPlaying(true);
+        audioPlayer.current.play();
+        animationRef.current = requestAnimationFrame(whilePlaying);
+        console.log("track changed")
+    }, [currentTrack]);
+
+    useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration)
         setDuration(seconds)
         progressBar.current.max = seconds;
     }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
-    
+
     //methods 
     const togglePlayPause = () => {
         const prevValue = isPlaying;
@@ -81,7 +88,12 @@ export default function PlayerContainer({mState, toggleMentalState}){
     /* current bug: 
     happens and chrome (and probably safari)
     clicking the forwardThirty and backThirty buttons result in the file restarting. Also can't drag the knob. Track just restarts.
-    works as expected in firefox
+    works as expected in firefox.
+
+    Skipping tracks: doesn't automatically play the next track after you click a skip button.
+        - use the 'autoplay' attribute on the audio tag
+        - adding 'autoPlay' attribute works, but the buttons and progress bar don't work with it
+
     */
 
    /* Todo:
@@ -95,13 +107,7 @@ export default function PlayerContainer({mState, toggleMentalState}){
    */
 
     const skipToNextTrack = () => {
-        // use hook with current track interpolated as string in audio tag src attribute
-        // each mental state has 3 tracks
-        // return the next track if 1 or 2
-        // return track 1 if current track number is 3
-
-        // const tracks = [1,2,3]
-        // would be better to provide track number in api response
+        // only need to set currentTrack -- the effects (see line 18) will play the track automatically and update the animations.
         setCurrentTrack(prevTrack => {
             if(prevTrack < 3){
                 return prevTrack + 1;
@@ -109,12 +115,6 @@ export default function PlayerContainer({mState, toggleMentalState}){
                 return 1;
             }
         });
-
-        // setIsPlaying(true);
-        // audioPlayer.current.play();
-        // animationRef.current = requestAnimationFrame(whilePlaying);
-        // console.log("Playing track...")
-        isPlaying ? togglePlayPause() : console.log("already paused")
     }
 
     const skipToPrevTrack = () => {
@@ -125,12 +125,6 @@ export default function PlayerContainer({mState, toggleMentalState}){
                 return 3;
             }
         });
-
-        // setIsPlaying(true);
-        // audioPlayer.current.play();
-        // animationRef.current = requestAnimationFrame(whilePlaying);
-        // console.log("Playing track...")
-        togglePlayPause();
     }
 
 
