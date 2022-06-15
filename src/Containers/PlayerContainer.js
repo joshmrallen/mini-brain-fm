@@ -29,6 +29,16 @@ export default function PlayerContainer({mState, toggleMentalState}){
         progressBar.current.max = seconds;
     }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
+    useEffect(() => {
+        const max = progressBar.current.max
+
+        if(currentTime == max){
+            console.log(`isPlaying: ${isPlaying}`);
+            skipToNextTrack();
+        }
+
+    }, [currentTime]);
+
     //methods 
     const togglePlayPause = () => {
         const prevValue = isPlaying;
