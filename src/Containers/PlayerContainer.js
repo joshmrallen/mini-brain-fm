@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {AiFillCloseCircle, AiOutlineRollback} from 'react-icons/ai'
+import {AiOutlineRollback} from 'react-icons/ai'
 import {FaPlay, FaPause} from 'react-icons/fa'
 import {BsSkipBackwardFill, BsSkipForwardFill, BsArrowCounterclockwise, BsArrowClockwise} from 'react-icons/bs'
 
@@ -106,7 +106,7 @@ export default function PlayerContainer({mState, toggleMentalState}){
    /* Todo:
         1. Add Track name to Audio player display
         2. Ask around in discord about chrome issue with forward/back 30 buttons.
-        
+
    */
 
     const skipToNextTrack = () => {
