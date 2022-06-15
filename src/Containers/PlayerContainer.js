@@ -96,24 +96,17 @@ export default function PlayerContainer({mState, toggleMentalState}){
     }
 
     /* current bug: 
-    happens and chrome (and probably safari)
-    clicking the forwardThirty and backThirty buttons result in the file restarting. Also can't drag the knob. Track just restarts.
-    works as expected in firefox.
+    happens only in chrome (and probably safari)
+        1. clicking the forwardThirty and backThirty buttons result in the file restarting. Also can't drag the knob. Track just restarts.
+            works as expected in firefox.
 
-    Skipping tracks: doesn't automatically play the next track after you click a skip button.
-        - use the 'autoplay' attribute on the audio tag
-        - adding 'autoPlay' attribute works, but the buttons and progress bar don't work with it
-
+        2. Can't seek by dragging the knob of the progress bar.
     */
 
    /* Todo:
-        DONE - 1. Add mental state hook to provide mental state name and give 'null' by default.
-        2. Make method to automatically request the next track after a track ends
-        3. Add Track name to Audio player display
-        4. Make click handler for skip buttons to skip to next/previous tracks.
-        5. Ask around in discord about chrome issue with forward/back 30 buttons.
-
-   
+        1. Add Track name to Audio player display
+        2. Ask around in discord about chrome issue with forward/back 30 buttons.
+        
    */
 
     const skipToNextTrack = () => {
