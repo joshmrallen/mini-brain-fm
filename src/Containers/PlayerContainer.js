@@ -9,6 +9,7 @@ export default function PlayerContainer({mState, toggleMentalState}){
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [currentTrack, setCurrentTrack] = useState(1);
+    const [trackName, setTrackName] = useState(null);
 
     //references
     const audioPlayer = useRef(); //reference audio component
@@ -38,6 +39,13 @@ export default function PlayerContainer({mState, toggleMentalState}){
         }
 
     }, [currentTime]);
+
+    // useEffect(() => {
+    //     const currentURL = srcURL();
+            // gets a cors error when you try to use fetch 
+    //     // fetch(currentURL)
+    //     //     .then(response => response.json())
+    // }, [currentTrack]);
 
     //methods 
     const togglePlayPause = () => {
@@ -105,6 +113,10 @@ export default function PlayerContainer({mState, toggleMentalState}){
 
    /* Todo:
         1. Add Track name to Audio player display
+            Reference this jsfiddle for getting the file name: http://jsfiddle.net/derickbailey/s4P2v/
+            Use fetch()
+                currently gets CORS error:
+                    allow in rails: https://www.stackhawk.com/blog/rails-cors-guide/
         2. Ask around in discord about chrome issue with forward/back 30 buttons.
 
    */
@@ -130,11 +142,14 @@ export default function PlayerContainer({mState, toggleMentalState}){
         });
     }
 
+    const srcURL = () => {
+        return `http://localhost:3000/tracks/${mState}/${currentTrack}`
+    }
 
     return(
         <div className="player-container">
             { console.log(`Current Mental State: ${mState}\nCurrent Track: ${currentTrack}`) }
-            <audio ref={audioPlayer} src={`http://localhost:3000/tracks/${mState}/${currentTrack}`} preload="metadata"></audio>
+            <audio ref={audioPlayer} src={srcURL()} preload="metadata"></audio>
             <button className='forward-backward' onClick={toggleMentalState}><AiOutlineRollback /></button>
             <button className='forward-backward' onClick={skipToPrevTrack}><BsSkipBackwardFill /></button>
             <button className='forward-backward back-thirty' onClick={backThirty}><BsArrowCounterclockwise />30</button>
